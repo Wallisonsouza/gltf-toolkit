@@ -1,7 +1,13 @@
-export type VEC3 = [number, number, number];
-export type VEC4 = [number, number, number, number];
+export type Vec3 = [number, number, number];
+export type Vec4 = [number, number, number, number];
+type AcessorDataType = Float32Array | Uint16Array | Uint32Array | Int8Array | Uint8Array | Int16Array;
 
-export enum GLTFIdentifier {
+export interface GltfObject {
+    gltf: GLTF | null;
+    bin: ArrayBuffer | null; 
+}
+
+export const enum GLTFIdentifier {
     SCALAR = "SCALAR",
     VEC2 = "VEC2",
     VEC3 = "VEC3",
@@ -11,7 +17,7 @@ export enum GLTFIdentifier {
     MAT4 = "MAT4"
 }
 
-export enum GLTFComponentType {
+export const enum GLTFComponentType {
     BYTE = 5120,
     UNSIGNED_BYTE = 5121,
     SHORT = 5122,
@@ -62,9 +68,9 @@ export interface GLTFMesh {
 export interface GLTFNode {
     mesh?: number;
     name?: string;
-    translation?: VEC3;
-    rotation?: VEC4; 
-    scale?: VEC3;
+    translation?: Vec3;
+    rotation?: Vec4; 
+    scale?: Vec3;
     children?: number[]; 
 }
 
@@ -79,7 +85,7 @@ export interface GLTFBaseTexture {
 }
 
 export interface GLTFPbrMetallicRoughness {
-    baseColorFactor?: VEC4;
+    baseColorFactor?: Vec4;
     baseColorTexture?: GLTFBaseTexture;
     metallicFactor?: number;
     roughnessFactor?: number;
@@ -87,7 +93,7 @@ export interface GLTFPbrMetallicRoughness {
 }
 
 export interface GLTFMaterial {
-    emissiveFactor?: VEC3; 
+    emissiveFactor?: Vec3; 
     emissiveTexture?: GLTFBaseTexture;
     alphaMode?: string; 
     name?: string
@@ -120,7 +126,7 @@ export interface GLTFTexture {
 }
 
 export interface GLTFImage {
-    uri: string;             // Caminho para a imagem da textura
-    mimeType: string;        // Tipo MIME da imagem
-    name?: string;           // Nome opcional da imagem
+    uri: string;    
+    mimeType: string; 
+    name?: string;     
 }

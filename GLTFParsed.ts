@@ -1,7 +1,4 @@
-import { GLTFSamplers } from "./GLTFSchema";
-
-type VEC3 = [number, number, number];
-type VEC4 = [number, number, number, number];
+import { GLTFSamplers, Vec3, Vec4 } from "./GLTFSchema";
 
 export interface ParsedObject {
     node: ParsedNode;
@@ -26,12 +23,12 @@ export interface TextureInfo {
 
 
 export interface ParsedMaterial {
-    name: string; // Nome do material
-    baseColor: {r: number, g: number, b: number, a: number};
-    emissive: {r: number, g: number, b: number};
-    metallic: number; // Fator metálico (0 a 1)
-    roughness: number; // Fator de rugosidade (0 a 1)
-    alphaMode: string; // Modo de alpha (ex: 'OPAQUE', 'TRANSPARENT', etc.)
+    name: string; 
+    baseColor: Vec4;
+    emissive: Vec3;
+    metallic: number; 
+    roughness: number;
+    alphaMode: string;
     
     textures?: {
         baseColor?: TextureInfo; // Textura de cor base
@@ -45,10 +42,9 @@ export interface ParsedMaterial {
 
 export interface ParsedNode {
     name: string;
-    meshIndex?: number;
-    materialIndex?: number;
-    translation: VEC3;
-    rotation: VEC4; 
-    scale: VEC3;
-    childrenIndex?: number[];
+    mesh?: number;
+    translation: Vec3;
+    rotation: Vec4; 
+    scale: Vec3;
+    children?: number[];
 }
